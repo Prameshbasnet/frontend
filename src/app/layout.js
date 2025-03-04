@@ -3,6 +3,8 @@ import "./globals.css";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import StorageProvider from "./StorageProvider";
+import NavBar from "@/components/layouts/header/navbar/Navbar";
+import Footer from "@/components/layouts/footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +32,11 @@ export default function RootLayout({ children }) {
           strategy="lazyOnload"
         />
         <ToastContainer />
-        <StorageProvider>{children}</StorageProvider>
+        <StorageProvider>
+          <NavBar />
+          {children}
+          <Footer />
+        </StorageProvider>
       </body>
     </html>
   );
