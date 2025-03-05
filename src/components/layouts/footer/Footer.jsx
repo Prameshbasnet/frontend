@@ -27,7 +27,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full shadow-md border-t flex justify-around py-3 rounded-t-3xl bg-white">
+    <footer className="fixed bottom-0 left-0 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] border-t flex justify-around py-3 rounded-t-3xl bg-white">
       <FooterLink
         href="/pages/home"
         icon={HomeIcon}
