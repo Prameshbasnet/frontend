@@ -1,10 +1,12 @@
+import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { FOODS } from "./data/foods";
 
 const Section = ({ title, subtitle, items }) => {
   return (
-    <section className="mt-8">
-      <div className="flex justify-between items-center mb-2 px-2">
+    <section className="my-8">
+      <div className="flex justify-between items-center mb-4 px-2">
         <div>
           <h2 className="text-xl font-bold text-gray-900">{title}</h2>
           <p className="text-sm text-gray-500">{subtitle}</p>
@@ -17,24 +19,23 @@ const Section = ({ title, subtitle, items }) => {
         </a>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-md rounded-lg overflow-hidden transition-transform hover:scale-105"
-          >
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-full h-40 object-cover"
-            />
-            <div className="p-2">
-              <h3 className="text-sm font-semibold text-gray-800">
-                {item.name}
-              </h3>
-              <p className="text-sm text-gray-600">{item.price}</p>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        {items.map((item) => (
+          <Link key={item.slug} href={`/pages/home/${item.slug}`}>
+            <div className="bg-white rounded-lg shadow transition-transform duration-200 hover:scale-105 cursor-pointer">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+              <div className="p-3">
+                <h3 className="text-sm font-semibold text-gray-800">
+                  {item.name}
+                </h3>
+                <p className="text-sm text-gray-600">{item.price}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
@@ -42,88 +43,64 @@ const Section = ({ title, subtitle, items }) => {
 };
 
 export default function HomePage() {
-  const newArrivalItems = [
-    {
-      name: "Chicken Biryani",
-      price: "Rs: 400",
-      image: "/images/chicken-biryani.png",
-    },
-    {
-      name: "Veggie Pizza",
-      price: "Rs: 350",
-      image: "/images/chicken-biryani.png",
-    },
-    {
-      name: "Burger Deluxe",
-      price: "Rs: 250",
-      image: "/images/chicken-biryani.png",
-    },
-  ];
-
-  const flashSaleItems = [
-    {
-      name: "Spicy Wings",
-      price: "Rs: 200",
-      image: "/images/chicken-biryani.png",
-    },
-    {
-      name: "Pasta Alfredo",
-      price: "Rs: 300",
-      image: "/images/chicken-biryani.png",
-    },
-    {
-      name: "Fish Tacos",
-      price: "Rs: 280",
-      image: "/images/chicken-biryani.png",
-    },
-  ];
+  const newArrivalItems = FOODS.slice(0, 3);
+  const flashSaleItems = FOODS.slice(3, 6);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar pb-4">
-        <div className="min-w-[220px] flex-shrink-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl shadow-lg p-4 flex flex-col justify-between">
-          <div>
-            <Image
-              src="/images/chicken-biryani.png"
-              width={100}
-              height={100}
-              alt="food"
-            />
-            <h3 className="text-white text-lg font-bold">Flash Offer</h3>
-            <p className="text-white text-sm">Best deserts in town.</p>
+    <div className="bg-gray-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar pb-4">
+          <div className="min-w-[220px] flex-shrink-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl shadow-lg p-4 flex flex-col justify-between hover:shadow-xl transition-shadow duration-200">
+            <div>
+              <Image
+                src="/images/chicken-biryani.png"
+                width={100}
+                height={100}
+                alt="food"
+              />
+              <h3 className="text-white text-xl font-bold">Flash Offer</h3>
+              <p className="text-white text-sm">Best desserts in town.</p>
+            </div>
+            <a
+              href="#"
+              className="text-white font-semibold mt-4 hover:underline"
+            >
+              Order →
+            </a>
           </div>
-          <a href="#" className="text-white font-semibold mt-4">
-            Order →
-          </a>
+
+          <div className="min-w-[220px] flex-shrink-0 bg-gradient-to-r from-green-400 to-green-600 rounded-xl shadow-lg p-4 flex flex-col justify-between hover:shadow-xl transition-shadow duration-200">
+            <div>
+              <Image
+                src="/images/chicken-biryani.png"
+                width={100}
+                height={100}
+                alt="food"
+              />
+              <h3 className="text-white text-xl font-bold">New Arrival</h3>
+              <p className="text-white text-sm">Fresh picks just added.</p>
+            </div>
+            <a
+              href="#"
+              className="text-white font-semibold mt-4 hover:underline"
+            >
+              Order →
+            </a>
+          </div>
         </div>
 
-        <div className="min-w-[220px] flex-shrink-0 bg-gradient-to-r from-green-400 to-green-600 rounded-xl shadow-lg p-4 flex flex-col justify-between">
-          <div>
-            <Image
-              src="/images/chicken-biryani.png"
-              width={100}
-              height={100}
-              alt="food"
-            />
-            <h3 className="text-white text-lg font-bold">New Arrival</h3>
-            <p className="text-white text-sm">Best deserts in town.</p>
-          </div>
-          <a href="#" className="text-white font-semibold mt-4">
-            Order →
-          </a>
-        </div>
+        <Section
+          title="Featured"
+          subtitle="Best of today's food list update"
+          items={newArrivalItems}
+        />
+
+        <Section
+          title="Our Picks"
+          subtitle="Some more delicious finds"
+          items={flashSaleItems}
+        />
       </div>
-
-      <Section
-        title="Featured"
-        subtitle="Best of the today food list update"
-        items={newArrivalItems}
-      />
-      <Section
-        title="Our Picks"
-        subtitle="Best of the today food list update"
-        items={flashSaleItems}
-      />
     </div>
   );
 }

@@ -1,53 +1,101 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Drawer,
   IconButton,
-  InputBase,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   Typography,
+  Box,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
   Search as SearchIcon,
   Close as CloseIcon,
 } from "@mui/icons-material";
+import Autocomplete from "@mui/joy/Autocomplete";
 import styles from "./NavBar.module.css";
+
+const popularFoods = [
+  { label: "Pizza" },
+  { label: "Burger" },
+  { label: "Pasta" },
+  { label: "Sushi" },
+  { label: "Tacos" },
+  { label: "Fried Chicken" },
+  { label: "Ice Cream" },
+  { label: "Ramen" },
+  { label: "Dumplings" },
+  { label: "Pho" },
+  { label: "BBQ Ribs" },
+  { label: "Steak" },
+  { label: "Fruit Salad" },
+  { label: "Chocolate Cake" },
+  { label: "Nachos" },
+];
 
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const handleDrawerOpen = () => {
-    setIsDrawerOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setIsDrawerOpen(false);
-  };
+  const handleDrawerOpen = () => setIsDrawerOpen(true);
+  const handleDrawerClose = () => setIsDrawerOpen(false);
 
   return (
     <div className={styles.navbar}>
-      {/* Hamburger Menu */}
       <IconButton onClick={handleDrawerOpen}>
         <MenuIcon sx={{ color: "#2C3E50" }} />
       </IconButton>
 
-      {/* Search Bar */}
-      <div className={styles.searchBar}>
-        <InputBase
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          border: "1px solid #ccc",
+          borderRadius: "24px",
+          backgroundColor: "#fff",
+          paddingLeft: 2,
+          paddingRight: 1,
+          width: "300px",
+          marginLeft: 2,
+        }}
+        className={styles.searchBar}
+      >
+        <Autocomplete
+          options={popularFoods.map((food) => food.label)}
           placeholder="What are you craving?"
-          className={styles.searchInput}
+          variant="plain"
+          color="neutral"
+          disableClearable
+          slotProps={{
+            root: {
+              sx: {
+                flexGrow: 1,
+                "--Autocomplete-gap": "0px",
+                padding: 0,
+              },
+            },
+            input: {
+              sx: {
+                border: "none",
+                backgroundColor: "transparent",
+                outline: "none",
+                boxShadow: "none",
+                padding: "8px 0",
+              },
+            },
+            popupIndicator: {
+              sx: { display: "none" },
+            },
+          }}
         />
-        <IconButton>
-          <SearchIcon sx={{ color: "#2C3E50" }} />
+        <IconButton sx={{ color: "#2C3E50" }}>
+          <SearchIcon />
         </IconButton>
-      </div>
+      </Box>
 
-      {/* Drawer */}
       <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose}>
         <div className={styles.drawerContent}>
           <div className={styles.drawerHeader}>
@@ -61,26 +109,25 @@ const NavBar = () => {
               <CloseIcon />
             </IconButton>
           </div>
-
           <List className={styles.navList}>
             <ListItem disablePadding>
               <ListItemButton onClick={handleDrawerClose}>
-                <ListItemText primary="Dummy" />
+                <ListItemText primary="Home" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton onClick={handleDrawerClose}>
-                <ListItemText primary="Dummy" />
+                <ListItemText primary="Menu" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton onClick={handleDrawerClose}>
-                <ListItemText primary="Dummy" />
+                <ListItemText primary="About" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton onClick={handleDrawerClose}>
-                <ListItemText primary="Dummy" />
+                <ListItemText primary="Contact" />
               </ListItemButton>
             </ListItem>
           </List>

@@ -19,10 +19,11 @@ export default function Custom404() {
         </p>
 
         <div className="mt-8">
-          <Link href="/">
-            <a className="inline-block px-6 py-3 rounded-md bg-green-300 text-black-600 text-sm sm:text-base font-bold transition-transform transform hover:scale-105 hover:shadow-lg">
-              Go back home
-            </a>
+          <Link
+            href="/"
+            className="inline-block px-6 py-3 rounded-md bg-green-300 text-black-600 text-sm sm:text-base font-bold transition-transform transform hover:scale-105 hover:shadow-lg"
+          >
+            Go back home
           </Link>
         </div>
       </main>
