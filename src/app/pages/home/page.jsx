@@ -13,13 +13,13 @@ const Section = ({ title, subtitle, items }) => {
         </div>
         <a
           href="#"
-          className="text-sm font-medium text-blue-600 hover:underline"
+          className="text-sm font-medium text-green-600 hover:underline"
         >
           See All
         </a>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 px-2">
         {items.map((item) => (
           <Link key={item.slug} href={`/pages/home/${item.slug}`}>
             <div className="bg-white rounded-lg shadow transition-transform duration-200 hover:scale-105 cursor-pointer">
@@ -49,16 +49,16 @@ export default function HomePage() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar pb-4">
-          <div className="min-w-[220px] flex-shrink-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl shadow-lg p-4 flex flex-col justify-between hover:shadow-xl transition-shadow duration-200">
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-2 scrollbar-hide">
+          <div className="min-w-[220px] flex-shrink-0 snap-start bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl shadow-lg p-4 flex flex-col justify-between hover:shadow-xl transition-shadow duration-200">
             <div>
               <Image
                 src="/images/chicken-biryani.png"
                 width={100}
                 height={100}
-                alt="food"
+                alt="Flash Offer"
               />
-              <h3 className="text-white text-xl font-bold">Flash Offer</h3>
+              <h3 className="text-white text-xl font-bold mt-2">Flash Offer</h3>
               <p className="text-white text-sm">Best desserts in town.</p>
             </div>
             <a
@@ -69,15 +69,15 @@ export default function HomePage() {
             </a>
           </div>
 
-          <div className="min-w-[220px] flex-shrink-0 bg-gradient-to-r from-green-400 to-green-600 rounded-xl shadow-lg p-4 flex flex-col justify-between hover:shadow-xl transition-shadow duration-200">
+          <div className="min-w-[220px] flex-shrink-0 snap-start bg-gradient-to-r from-green-400 to-green-600 rounded-xl shadow-lg p-4 flex flex-col justify-between hover:shadow-xl transition-shadow duration-200">
             <div>
               <Image
                 src="/images/chicken-biryani.png"
                 width={100}
                 height={100}
-                alt="food"
+                alt="New Arrival"
               />
-              <h3 className="text-white text-xl font-bold">New Arrival</h3>
+              <h3 className="text-white text-xl font-bold mt-2">New Arrival</h3>
               <p className="text-white text-sm">Fresh picks just added.</p>
             </div>
             <a
